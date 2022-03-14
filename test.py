@@ -35,8 +35,7 @@ def tracerSpectre(data, rate, debut, duree):
     plt.axis([0, 0.5 * rate, 0, 1])
     plt.grid()
 
-
 plt.figure(figsize=(12, 4))
-tracerSpectre(data, rate, 0.0, 11.0)
+tracerSpectre(data, rate, 0.0, 10.0)
 plt.axis([0, 800, 0, 1])
 plt.show()
