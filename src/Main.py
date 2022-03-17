@@ -21,7 +21,10 @@ clf_lr.fit(X_train,y_train)
 
 train_score = clf_lr.score(X_train,y_train)
 test_score = clf_lr.score(X_test,y_test)
-cross_val=cross_val_score(clf_lr,X,y,cv=7)
+cross_val=cross_val_score(clf_lr,X,y,cv=5)
+
+print(train_score,test_score)
+print(cross_val)
 
 
 
