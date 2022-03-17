@@ -4,33 +4,32 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def loadDataSpectre():
-    dfBird = pd.read_csv('..//Ressources//ff1010bird_metadata.csv')
+    dfBird = pd.read_csv('D://dev//Pycharm-project//Ressources//ff1010bird_metadata.csv')
     dfBird.set_index('itemid', inplace=True)
     fmax = 20000
-    freq=range(0,fmax+1,10)
+    freq=range(0,fmax,100)
     df=pd.DataFrame(index=dfBird.index,columns=freq)
     df.insert(0,'hasBird',dfBird['hasbird'])
     k=0
+    spec_red=np.zeros(int(fmax/100))
     for sound in df.index:
-        print(sound)
+        print(k,sound)
         file="D://dev//Projet Machine Learning//wav//"+str(sound)+".wav"
 
         rate,data=wave.read(file)
-        n=data.shape[0]
-        duree=n/rate
-
-        start = 0
-        stop = int(duree * rate)
-        spectre = np.absolute(np.fft.fft(data[start:stop]))
+        spectre = np.absolute(np.fft.fft(data[0:441000]))
         spectre = spectre / spectre.max()
-        spec_red=np.zeros(int(fmax/10)+1)
-        for i in range(int(fmax/10)+1):
-            spec_red[i]=np.mean(spectre[i*100:i*100+100])
+        for i in range(int(fmax/100)):
+            spec_red[i]=np.mean(spectre[i*1000:i*1000+1000])
         df.loc[[sound],freq]=spec_red
-        if(k>10):
-            return df
-        else:
-            k+=1
+        # plt.vlines(freq, [0], spec_red, 'r')
+        # plt.xlabel('f (Hz)')
+        # plt.ylabel('A')
+        # plt.grid()
+        # plt.title(sound)
+        # plt.show()
+        k+=1
+    df.to_csv('D://dev//Pycharm-project//Ressources//spectre.csv')
     return df
 
 
