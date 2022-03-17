@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score
 
-df=pd.read_csv("D:/dev/Pycharm-project/BirdOrNotBird/Ressources/spectre.csv",index_col='itemid').sort_index()
+df=pd.read_csv("../Ressources/spectre.csv",index_col='itemid').sort_index()
 
 freq=range(0,20000,100)
 

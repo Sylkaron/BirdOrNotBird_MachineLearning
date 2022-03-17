@@ -29,7 +29,7 @@ def loadDataSpectre():
         # plt.title(sound)
         # plt.show()
         k+=1
-    df.to_csv('D://dev//Pycharm-project//Ressources//spectre.csv')
+    df.to_csv('..//Ressources//spectre.csv')
     return df
 
 
